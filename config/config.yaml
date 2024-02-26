@@ -10,7 +10,7 @@ http:
     key: ""
 
 app:
-  name: "Pagoda"
+  name: "Rosorg"
   environment: "local"
   # Change this on any live environments
   encryptionKey: "?E(G+KbPeShVmYq3t6w9z$C&F)J@McQf"
@@ -33,8 +33,8 @@ cache:
 database:
   hostname: "localhost"
   port: 5432
-  user: "admin"
-  password: "admin"
+  user: "postgres"
+  password: "postgres"
   database: "app"
   testDatabase: "app_test"
 

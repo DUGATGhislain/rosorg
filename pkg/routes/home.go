@@ -2,7 +2,6 @@ package routes
 
 import (
 	"fmt"
-
 	"github.com/mikestefanello/pagoda/pkg/controller"
 	"github.com/mikestefanello/pagoda/templates"
 
@@ -24,7 +23,7 @@ func (c *home) Get(ctx echo.Context) error {
 	page := controller.NewPage(ctx)
 	page.Layout = templates.LayoutMain
 	page.Name = templates.PageHome
-	page.Metatags.Description = "Welcome to the homepage."
+	page.Metatags.Description = "Welcome to " + c.Container.Config.App.Name
 	page.Metatags.Keywords = []string{"Go", "MVC", "Web", "Software"}
 	page.Pager = controller.NewPager(ctx, 4)
 	page.Data = c.fetchPosts(&page.Pager)
