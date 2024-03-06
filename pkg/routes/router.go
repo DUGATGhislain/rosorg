@@ -59,6 +59,7 @@ func BuildRouter(c *services.Container) {
 		echomw.Gzip(),
 		echomw.Logger(),
 		middleware.LogRequestID(),
+		middleware.LocalizeApp(),
 		echomw.TimeoutWithConfig(echomw.TimeoutConfig{
 			Timeout: c.Config.App.Timeout,
 		}),

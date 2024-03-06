@@ -64,3 +64,12 @@ func Link(url, text, currentPath string, classes ...string) template.HTML {
 	html := fmt.Sprintf(`<a class="%s" href="%s">%s</a>`, strings.Join(classes, " "), url, text)
 	return template.HTML(html)
 }
+
+func T(url, text, currentPath string, classes ...string) template.HTML {
+	if currentPath == url {
+		classes = append(classes, "is-active")
+	}
+
+	html := fmt.Sprintf(`<a class="%s" href="%s">%s</a>`, strings.Join(classes, " "), url, text)
+	return template.HTML(html)
+}

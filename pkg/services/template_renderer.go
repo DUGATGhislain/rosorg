@@ -53,11 +53,11 @@ type (
 )
 
 // NewTemplateRenderer creates a new TemplateRenderer
-func NewTemplateRenderer(cfg *config.Config) *TemplateRenderer {
+func NewTemplateRenderer(c *Container) *TemplateRenderer {
 	return &TemplateRenderer{
 		templateCache: sync.Map{},
 		funcMap:       funcmap.GetFuncMap(),
-		config:        cfg,
+		config:        c.Config,
 	}
 }
 

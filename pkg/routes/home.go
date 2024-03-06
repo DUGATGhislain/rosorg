@@ -28,6 +28,8 @@ func (c *home) Get(ctx echo.Context) error {
 	page.Pager = controller.NewPager(ctx, 4)
 	page.Data = c.fetchPosts(&page.Pager)
 
+	fmt.Print(c.GetLocalizedMessage(ctx))
+
 	return c.RenderPage(ctx, page)
 }
 

@@ -1,0 +1,2 @@
+HelloPerson = "Hello {{.Name}}"
+HelloWorld = "Hello world !"

@@ -4,6 +4,9 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
+	"github.com/BurntSushi/toml"
+	"github.com/nicksnyder/go-i18n/v2/i18n"
+	"golang.org/x/text/language"
 
 	"entgo.io/ent/dialect"
 	entsql "entgo.io/ent/dialect/sql"
@@ -53,6 +56,8 @@ type Container struct {
 
 	// Tasks stores the task client
 	Tasks *TaskClient
+
+	Localizer *Localizer
 }
 
 // NewContainer creates and initializes a new Container
@@ -68,6 +73,7 @@ func NewContainer() *Container {
 	c.initTemplateRenderer()
 	c.initMail()
 	c.initTasks()
+	c.initLocalizer()
 	return c
 }
 
@@ -183,7 +189,7 @@ func (c *Container) initAuth() {
 
 // initTemplateRenderer initializes the template renderer
 func (c *Container) initTemplateRenderer() {
-	c.TemplateRenderer = NewTemplateRenderer(c.Config)
+	c.TemplateRenderer = NewTemplateRenderer(c)
 }
 
 // initMail initialize the mail client
@@ -198,4 +204,14 @@ func (c *Container) initMail() {
 // initTasks initializes the task client
 func (c *Container) initTasks() {
 	c.Tasks = NewTaskClient(c.Config)
+}
+
+func (c *Container) initLocalizer() {
+	bundle := i18n.NewBundle(language.English)
+	bundle.RegisterUnmarshalFunc("toml", toml.Unmarshal)
+
+	// Load the translation files
+	bundle.MustLoadMessageFile("locales/active.en-US.toml")
+	bundle.MustLoadMessageFile("locales/active.fr-FR.toml")
+	c.Localizer = NewLocalizer(bundle)
 }
