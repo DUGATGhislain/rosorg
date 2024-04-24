@@ -25,6 +25,8 @@ type (
 
 		// config stores application configuration
 		config *config.Config
+
+		localizer *Localizer
 	}
 
 	// TemplateParsed is a wrapper around parsed templates which are stored in the TemplateRenderer cache
@@ -53,11 +55,12 @@ type (
 )
 
 // NewTemplateRenderer creates a new TemplateRenderer
-func NewTemplateRenderer(cfg *config.Config) *TemplateRenderer {
+func NewTemplateRenderer(cfg *config.Config, localizer *Localizer) *TemplateRenderer {
 	return &TemplateRenderer{
 		templateCache: sync.Map{},
 		funcMap:       funcmap.GetFuncMap(),
 		config:        cfg,
+		localizer:     localizer,
 	}
 }
 

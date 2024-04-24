@@ -189,7 +189,7 @@ func (c *Container) initAuth() {
 
 // initTemplateRenderer initializes the template renderer
 func (c *Container) initTemplateRenderer() {
-	c.TemplateRenderer = NewTemplateRenderer(c.Config)
+	c.TemplateRenderer = NewTemplateRenderer(c.Config, c.Localizer)
 }
 
 // initMail initialize the mail client
