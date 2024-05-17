@@ -159,7 +159,3 @@ func (c *Controller) Redirect(ctx echo.Context, route string, routeParams ...any
 func (c *Controller) Fail(err error, log string) error {
 	return echo.NewHTTPError(http.StatusInternalServerError, fmt.Sprintf("%s: %v", log, err))
 }
-
-func (c *Controller) GetLocalizedMessage(ctx echo.Context) string {
-	return c.Container.Localizer.GetLocalizedMessage(ctx)
-}
